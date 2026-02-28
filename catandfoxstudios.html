@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cat & Fox Studios | AI · Streaming · Comedy · Indie Film · Entertainment</title>
+<meta name="description" content="Cat & Fox Studios — AI tech shows, live streaming, comedy, indie films, and entertainment. Home of DrFox2.0, LunarFoxVibes, Mora the Puppet, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #FF6B1A;
+  --amber: #FFB830;
+  --teal: #00D4AA;
+  --dark: #0A0A0F;
+  --dark2: #101018;
+  --dark3: #14141E;
+  --card: #13131C;
+  --border: rgba(255,107,26,0.18);
+  --text: #E8E8F0;
+  --muted: #7A7A90;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-serif;overflow-x:hidden;cursor:none;}
+.cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:screen;}
+.cursor-ring{width:34px;height:34px;border:1.5px solid var(--amber);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:width .2s,height .2s,border-color .2s;}
+.cursor-ring.big{width:58px;height:58px;border-color:var(--orange);}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.28;pointer-events:none;z-index:9990;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(10,10,15,.96),rgba(10,10,15,.6));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,26,.06);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.06em;color:white;text-decoration:none;display:flex;align-items:center;gap:.35rem;}
+.nav-logo .fox{color:var(--orange);}
+.nav-logo .amp{color:var(--amber);}
+.nav-links{display:flex;gap:1.6rem;align-items:center;}
+.nav-links a{font-size:.77rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--orange);transition:width .25s;}
+.nav-links a:hover{color:white;}
+.nav-links a:hover::after{width:100%;}
+.live-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,40,40,.12);border:1px solid rgba(255,40,40,.32);border-radius:100px;padding:.28rem .75rem;font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#FF4455;text-decoration:none;transition:all .2s;}
+.live-pill:hover{background:rgba(255,40,40,.22);}
+.live-dot{width:6px;height:6px;background:#FF4455;border-radius:50%;animation:pulse 1.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.5);}}
+.patreon-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,90,50,.12);border:1px solid rgba(255,90,50,.3);border-radius:100px;padding:.28rem .75rem;font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#FF7755;text-decoration:none;transition:all .2s;}
+.patreon-pill:hover{background:rgba(255,90,50,.22);}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 1.5rem 5rem;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(255,107,26,.1) 0%,transparent 70%),radial-gradient(ellipse 50% 35% at 15% 80%,rgba(0,212,170,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 85% 15%,rgba(155,107,255,.07) 0%,transparent 55%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,26,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,26,.03) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 15%,transparent 72%);}
+#particles-canvas{position:absolute;inset:0;pointer-events:none;}
+.hero-content{text-align:center;position:relative;z-index:2;max-width:860px;}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--teal);text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp .8s ease both;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,14vw,11rem);line-height:.85;letter-spacing:.02em;margin-bottom:1.2rem;animation:fadeUp .8s .12s ease both;}
+.hero-title .l1{display:block;color:white;}
+.hero-title .l2{display:block;-webkit-text-stroke:1.5px var(--orange);color:transparent;}
+.hero-title .l3{display:block;color:var(--amber);}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:540px;margin:1.2rem auto 2rem;line-height:1.75;animation:fadeUp .8s .24s ease both;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem;animation:fadeUp .8s .36s ease both;}
+.tag{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:.3rem .85rem;font-size:.75rem;font-weight:600;letter-spacing:.07em;}
+.hero-cta{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .48s ease both;}
+.btn{padding:.85rem 2rem;border-radius:4px;font-family:'Exo 2',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all .25s;border:none;}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#E03A00);color:white;box-shadow:0 0 28px rgba(255,107,26,.25);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 45px rgba(255,107,26,.45);}
+.btn-outline{background:transparent;color:white;border:1px solid rgba(255,255,255,.2);}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange);}
+.btn-patreon{background:linear-gradient(135deg,#FF6644,#E03900);color:white;}
+.btn-patreon:hover{transform:translateY(-2px);filter:brightness(1.12);}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;animation:fadeIn 1s 1s ease both;}
+.scroll-bar{width:1px;height:36px;background:linear-gradient(to bottom,var(--orange),transparent);animation:scanDown 1.6s ease-in-out infinite;}
+@keyframes scanDown{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+.ticker-wrap{background:var(--orange);padding:.52rem 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;gap:2.5rem;animation:tickScroll 32s linear infinite;}
+.tick-item{font-family:'Space Mono',monospace;font-size:.69rem;font-weight:700;letter-spacing:.18em;color:var(--dark);text-transform:uppercase;}
+@keyframes tickScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+section{padding:5.5rem 1.5rem;}
+.container{max-width:1200px;margin:0 auto;}
+.s-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.35em;color:var(--teal);text-transform:uppercase;margin-bottom:.65rem;}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;margin-bottom:.8rem;}
+.s-title em{color:var(--orange);font-style:normal;}
+.s-desc{color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:2.8rem;font-size:.92rem;}
+#projects{background:var(--dark2);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.3rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s cubic-bezier(.23,1,.32,1);position:relative;}
+.proj-card:hover{transform:translateY(-7px);border-color:rgba(255,107,26,.5);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 35px rgba(255,107,26,.1);}
+.proj-banner{height:155px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.proj-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--card));}
+.proj-emoji{font-size:4.2rem;z-index:1;transition:transform .4s ease;}
+.proj-card:hover .proj-emoji{transform:scale(1.12);}
+.proj-body{padding:1.3rem 1.5rem 1.8rem;}
+.proj-type{font-size:.65rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem;}
+.proj-name{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.03em;margin-bottom:.4rem;line-height:1.05;}
+.proj-desc{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem;}
+.proj-chips{display:flex;gap:.4rem;flex-wrap:wrap;}
+.chip{font-size:.66rem;font-weight:700;padding:.17rem .52rem;border-radius:3px;background:rgba(255,255,255,.05);color:var(--muted);letter-spacing:.05em;}
+.proj-arrow{position:absolute;bottom:1.3rem;right:1.4rem;width:33px;height:33px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:.9rem;transition:all .25s;}
+.proj-card:hover .proj-arrow{background:var(--orange);color:white;transform:rotate(45deg);}
+.modal-overlay{position:fixed;inset:0;background:rgba(5,5,10,.97);z-index:5000;display:none;overflow-y:auto;backdrop-filter:blur(12px);}
+.modal-overlay.open{display:block;animation:fadeIn .25s ease;}
+.modal-inner{max-width:1080px;margin:0 auto;padding:1.5rem;}
+.modal-back{display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;transition:color .2s;padding-top:5.5rem;margin-bottom:.5rem;}
+.modal-back:hover{color:var(--orange);}
+.modal-top{display:flex;align-items:flex-start;justify-content:space-between;padding:1.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2rem;gap:1.5rem;}
+.modal-ptype{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1;letter-spacing:.02em;}
+.modal-desc{color:var(--muted);font-size:.9rem;margin-top:.5rem;line-height:1.7;max-width:620px;}
+.modal-big-emoji{font-size:3.8rem;flex-shrink:0;}
+.ptabs{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.8rem;}
+.ptab{padding:.44rem 1.1rem;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Exo 2',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.ptab.active,.ptab:hover{background:var(--orange);border-color:var(--orange);color:white;}
+.pane{display:none;}
+.pane.active{display:block;animation:fadeUp .3s ease;}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem;margin-top:1rem;}
+.link-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1rem;text-align:center;text-decoration:none;display:block;transition:all .25s;}
+.link-card:hover{border-color:rgba(255,107,26,.55);transform:translateY(-4px);background:rgba(255,107,26,.06);}
+.lc-icon{font-size:1.9rem;display:block;margin-bottom:.45rem;}
+.lc-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:white;display:block;letter-spacing:.05em;}
+.lc-handle{font-size:.73rem;color:var(--muted);display:block;margin-top:.15rem;}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:1rem;}
+.yt-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform .25s,border-color .25s;}
+.yt-card:hover{transform:translateY(-4px);border-color:rgba(255,107,26,.45);}
+.yt-card iframe{width:100%;aspect-ratio:16/9;border:none;display:block;}
+.yt-cap{padding:.7rem 1rem;font-size:.79rem;color:var(--muted);}
+#about{background:var(--dark3);position:relative;overflow:hidden;}
+#about::before{content:'CAT & FOX';position:absolute;bottom:-2rem;right:-1rem;font-family:'Bebas Neue',sans-serif;font-size:clamp(7rem,18vw,16rem);color:rgba(255,107,26,.025);pointer-events:none;white-space:nowrap;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.92rem;}
+.about-text p strong{color:var(--text);}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.5rem;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--orange);line-height:1;}
+.stat-lbl{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+#games{background:var(--dark2);}
+.games-banner{background:linear-gradient(135deg,rgba(155,107,255,.1),rgba(255,107,26,.07));border:1px solid rgba(155,107,255,.22);border-radius:12px;padding:2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.games-icon{font-size:4rem;}
+.games-text h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:white;margin-bottom:.4rem;}
+.games-text p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;max-width:500px;line-height:1.7;}
+#connect{background:var(--dark);}
+.all-socials{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.9rem;margin-bottom:2.5rem;}
+.soc-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem .9rem;text-align:center;text-decoration:none;display:block;transition:all .25s;}
+.soc-card:hover{border-color:var(--orange);transform:translateY(-4px);}
+.soc-card .si{font-size:1.9rem;display:block;margin-bottom:.45rem;}
+.soc-card .sn{font-size:.77rem;font-weight:700;letter-spacing:.06em;color:var(--text);display:block;}
+.soc-card .sh{font-size:.69rem;color:var(--muted);display:block;margin-top:.1rem;}
+.nbox{background:linear-gradient(135deg,rgba(255,107,26,.09),rgba(0,212,170,.04));border:1px solid rgba(255,107,26,.2);border-radius:12px;padding:2.8rem;text-align:center;}
+.nbox h3{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;margin-bottom:.4rem;}
+.nbox p{color:var(--muted);margin-bottom:1.4rem;font-size:.88rem;}
+.nform{display:flex;max-width:420px;margin:0 auto;border:1px solid rgba(255,107,26,.32);border-radius:4px;overflow:hidden;}
+.nform input{flex:1;background:rgba(255,255,255,.04);border:none;padding:.8rem 1.1rem;color:white;font-family:'Exo 2',sans-serif;font-size:.87rem;outline:none;}
+.nform input::placeholder{color:var(--muted);}
+.nform button{background:var(--orange);border:none;padding:.8rem 1.3rem;color:white;font-family:'Exo 2',sans-serif;font-size:.77rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.nform button:hover{background:#E04500;}
+footer{background:#060608;padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.05em;margin-bottom:.4rem;}
+.foot-logo span{color:var(--orange);}
+footer p{font-size:.77rem;color:var(--muted);margin-bottom:.25rem;}
+footer a{color:var(--orange);text-decoration:none;}
+.foot-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;}
+.foot-links a{font-size:.74rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.foot-links a:hover{color:var(--orange);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal2{opacity:0;transform:translateY(28px);transition:opacity .7s .15s ease,transform .7s .15s ease;}
+.reveal2.in{opacity:1;transform:translateY(0);}
+@media(max-width:768px){nav{padding:.9rem 1rem;}.nav-links{display:none;}.about-grid{grid-template-columns:1fr;gap:2.5rem;}.modal-top{flex-direction:column;}.games-banner{flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">Cat <span class="amp">&</span> <span class="fox">Fox</span> Studios</a>
+  <div class="nav-links">
+    <a href="#projects">Shows</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+    <a href="#connect">Connect</a>
+    <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="patreon-pill">🧡 Support Us</a>
+    <a href="https://kick.com/lunarfoxvibes" target="_blank" class="live-pill"><span class="live-dot"></span> LIVE</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// Broadcasting from the Edge of Tomorrow //</p>
+    <h1 class="hero-title">
+      <span class="l1">Cat &</span>
+      <span class="l2">Fox</span>
+      <span class="l3">Studios</span>
+    </h1>
+    <p class="hero-sub">Home of DrFox2.0, LunarFoxVibes, Mora the Puppet — AI tech, live streaming, comedy, indie films, and games. All independent. All heart.</p>
+    <div class="hero-tags">
+      <span class="tag">🤖 AI Tech</span>
+      <span class="tag">🟢 Kick Live</span>
+      <span class="tag">🟣 Twitch</span>
+      <span class="tag">🎬 Indie Film</span>
+      <span class="tag">😂 Comedy</span>
+      <span class="tag">🎮 Games</span>
+      <span class="tag">🎭 Puppets</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Explore Our Shows</a>
+      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Patreon</a>
+      <a href="#connect" class="btn btn-outline">Find Us Everywhere</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-bar"></div>scroll</div>
+</section>
+
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span class="tick-item">🤖 DrFox2.0 — AI & Robotics in 60 Seconds</span>
+  <span class="tick-item">🌙 LunarFoxVibes — Live on Kick & Twitch</span>
+  <span class="tick-item">🎭 Mora the Puppet — Comedy Sketches</span>
+  <span class="tick-item">🎮 Cat & Fox Games on itch.io</span>
+  <span class="tick-item">🎬 Indie Films</span>
+  <span class="tick-item">🧡 Support All Projects on Patreon</span>
+  <span class="tick-item">💬 Join the Discord Community</span>
+  <span class="tick-item">📦 Unboxings with The Jenna Fox</span>
+  <span class="tick-item">🤖 DrFox2.0 — AI & Robotics in 60 Seconds</span>
+  <span class="tick-item">🌙 LunarFoxVibes — Live on Kick & Twitch</span>
+  <span class="tick-item">🎭 Mora the Puppet — Comedy Sketches</span>
+  <span class="tick-item">🎮 Cat & Fox Games on itch.io</span>
+  <span class="tick-item">🎬 Indie Films</span>
+  <span class="tick-item">🧡 Support All Projects on Patreon</span>
+  <span class="tick-item">💬 Join the Discord Community</span>
+  <span class="tick-item">📦 Unboxings with The Jenna Fox</span>
+</div></div>
+
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <p class="s-label">// Our Shows & Projects //</p>
+      <h2 class="s-title">Everything We <em>Create</em></h2>
+      <p class="s-desc">Click any project to explore episodes, streams, and links across every platform we publish on.</p>
+    </div>
+    <div class="projects-grid reveal2">
+
+      <div class="proj-card" onclick="openProject('drfox')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#080E1E,#0E1A35);">
+          <div class="proj-emoji">🤖</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">AI · Robotics · 60-Second Tech</p>
+          <h3 class="proj-name">DrFox 2.0</h3>
+          <p class="proj-desc">Your AI avatar host breaking down the latest in artificial intelligence and robotics — in 60 seconds flat. Fast, smart, and actually fun.</p>
+          <div class="proj-chips"><span class="chip">YouTube</span><span class="chip">TikTok</span><span class="chip">Instagram</span><span class="chip">Sora</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="proj-card" onclick="openProject('lunar')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#0C0019,#180030);">
+          <div class="proj-emoji">🌙</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">Live Streaming · Entertainment</p>
+          <h3 class="proj-name">LunarFoxVibes</h3>
+          <p class="proj-desc">Live streaming vibes with Lunar — gaming, chill sessions, variety content, and a community that feels like home. On Kick, Twitch, and YouTube.</p>
+          <div class="proj-chips"><span class="chip">Kick</span><span class="chip">Twitch</span><span class="chip">YouTube</span><span class="chip">Discord</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="proj-card" onclick="openProject('mora')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#1A0800,#281200);">
+          <div class="proj-emoji">🎭</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">Comedy · Puppet · Short-Form</p>
+          <h3 class="proj-name">Mora the Puppet</h3>
+          <p class="proj-desc">Mora explores the world one sketch at a time. Puppet comedy with real heart and real laughs — short-form gold on TikTok and Instagram.</p>
+          <div class="proj-chips"><span class="chip">TikTok</span><span class="chip">Instagram</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="proj-card" onclick="openProject('catfox')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#0F0A00,#1E1500);">
+          <div class="proj-emoji">🦊🐱</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">Main Studio · Entertainment · Indie Film</p>
+          <h3 class="proj-name">Cat & Fox Studios</h3>
+          <p class="proj-desc">The main studio channel — where all our worlds collide. Indie films, entertainment, behind-the-scenes, and the full Cat & Fox universe.</p>
+          <div class="proj-chips"><span class="chip">YouTube</span><span class="chip">Patreon</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="proj-card" onclick="openProject('jenna')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#001A1A,#002828);">
+          <div class="proj-emoji">📦</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">Unboxings · Personal Channel</p>
+          <h3 class="proj-name">The Jenna Fox</h3>
+          <p class="proj-desc">Jenna's original YouTube channel — now home to unboxing videos and personal content. The OG Cat & Fox experience, still going strong.</p>
+          <div class="proj-chips"><span class="chip">YouTube</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="proj-card" onclick="openProject('more')">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#0C0C14,#14141E);">
+          <div class="proj-emoji" style="font-size:3rem">✨🎬</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-type">Always In Development</p>
+          <h3 class="proj-name">More Coming</h3>
+          <p class="proj-desc">New shows, new ideas, new chaos. We're always building the next thing. Support us on Patreon to help make it happen.</p>
+          <div class="proj-chips"><span class="chip">Patreon</span><span class="chip">Discord</span><span class="chip">TBA</span></div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="container">
+    <div class="reveal">
+      <p class="s-label">// We Also Make Games //</p>
+      <h2 class="s-title">Play Our <em>Games</em></h2>
+    </div>
+    <div class="games-banner reveal2">
+      <div class="games-icon">🎮</div>
+      <div class="games-text">
+        <h3>Cat & Fox on itch.io</h3>
+        <p>We make indie games too! From small experiments to bigger projects — all made with the same Cat & Fox creativity and heart. Free to play and explore.</p>
+        <a href="https://catandfox.itch.io/" target="_blank" class="btn btn-primary">Play Our Games →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="s-label">// Who We Are //</p>
+        <h2 class="s-title">Stories Worth <em>Telling</em></h2>
+        <p>Cat & Fox Studios is an <strong>independent entertainment studio</strong> built on passion, creativity, and a genuine love of technology and storytelling.</p>
+        <p>From 60-second AI breakdowns with DrFox2.0 to puppet comedy with Mora, live streaming with Lunar, unboxings with Jenna, indie films, and indie games — <strong>we do it all, and we do it with heart.</strong></p>
+        <p>Every show, every stream, every frame is made by real people who care deeply about what they put into the world. <strong>Your Patreon support</strong> covers all our projects and keeps the lights on.</p>
+        <div class="hero-cta" style="justify-content:flex-start;margin-top:1.5rem;">
+          <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Support on Patreon</a>
+          <a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="btn btn-outline">💬 Join Discord</a>
+        </div>
+      </div>
+      <div class="reveal2">
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-num">5+</div><div class="stat-lbl">Active Shows & Projects</div></div>
+          <div class="stat-box"><div class="stat-num">6+</div><div class="stat-lbl">Platforms We Publish On</div></div>
+          <div class="stat-box"><div class="stat-num">100%</div><div class="stat-lbl">Indie & Independent</div></div>
+          <div class="stat-box"><div class="stat-num">∞</div><div class="stat-lbl">Ideas In Development</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="container">
+    <div class="reveal">
+      <p class="s-label">// Find Us Everywhere //</p>
+      <h2 class="s-title">We're <em>Live</em> Across</h2>
+      <p class="s-desc">Follow, subscribe, and support us wherever you hang out online. One Patreon covers all our projects.</p>
+    </div>
+    <div class="all-socials reveal2">
+      <a href="https://www.youtube.com/@CatandFoxStudios" target="_blank" class="soc-card"><span class="si">▶️</span><span class="sn">YouTube</span><span class="sh">Cat & Fox Studios</span></a>
+      <a href="https://www.youtube.com/@LunarFoxVibes" target="_blank" class="soc-card"><span class="si">▶️</span><span class="sn">YouTube</span><span class="sh">LunarFoxVibes</span></a>
+      <a href="https://www.youtube.com/@DrFox2.0" target="_blank" class="soc-card"><span class="si">▶️</span><span class="sn">YouTube</span><span class="sh">DrFox 2.0</span></a>
+      <a href="https://www.youtube.com/@TheJennaFox" target="_blank" class="soc-card"><span class="si">▶️</span><span class="sn">YouTube</span><span class="sh">The Jenna Fox</span></a>
+      <a href="https://kick.com/lunarfoxvibes" target="_blank" class="soc-card"><span class="si">🟢</span><span class="sn">Kick</span><span class="sh">LunarFoxVibes</span></a>
+      <a href="https://www.twitch.tv/lunarfoxvibes" target="_blank" class="soc-card"><span class="si">🟣</span><span class="sn">Twitch</span><span class="sh">LunarFoxVibes</span></a>
+      <a href="https://www.tiktok.com/@drfox2.0" target="_blank" class="soc-card"><span class="si">📱</span><span class="sn">TikTok</span><span class="sh">@drfox2.0</span></a>
+      <a href="https://www.tiktok.com/@moraexplores" target="_blank" class="soc-card"><span class="si">📱</span><span class="sn">TikTok</span><span class="sh">@moraexplores</span></a>
+      <a href="https://www.instagram.com/drfox2.0" target="_blank" class="soc-card"><span class="si">📸</span><span class="sn">Instagram</span><span class="sh">@drfox2.0</span></a>
+      <a href="https://www.instagram.com/moraexplores" target="_blank" class="soc-card"><span class="si">📸</span><span class="sn">Instagram</span><span class="sh">@moraexplores</span></a>
+      <a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="soc-card"><span class="si">💬</span><span class="sn">Discord</span><span class="sh">Join the Server</span></a>
+      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="soc-card"><span class="si">🧡</span><span class="sn">Patreon</span><span class="sh">Support All Projects</span></a>
+      <a href="https://catandfox.itch.io/" target="_blank" class="soc-card"><span class="si">🎮</span><span class="sn">itch.io</span><span class="sh">Our Games</span></a>
+    </div>
+    <div class="nbox reveal">
+      <h3>Never Miss an Episode</h3>
+      <p>Get notified when we drop new content, go live, or launch something new.</p>
+      <div class="nform">
+        <input type="email" id="emailInput" placeholder="your@email.com" />
+        <button onclick="handleSubscribe()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Cat <span>&</span> Fox Studios</div>
+  <p>Crafting Visual Stories with Heart</p>
+  <div class="foot-links">
+    <a href="https://www.youtube.com/@CatandFoxStudios" target="_blank">YouTube</a>
+    <a href="https://kick.com/lunarfoxvibes" target="_blank">Kick</a>
+    <a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank">Discord</a>
+    <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank">Patreon</a>
+    <a href="https://catandfox.itch.io/" target="_blank">itch.io</a>
+  </div>
+  <p>© 2025 Cat & Fox Studios — Independent Entertainment</p>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-inner" id="modal-content"></div>
+</div>
+
+<script>
+const P = {
+  drfox:{emoji:'🤖',type:'AI · Robotics · 60-Second Tech Show',name:'DrFox 2.0',desc:'Your AI avatar host breaks down the latest in artificial intelligence and robotics in 60 seconds flat. Fast, smart, actually fun.',
+    tabs:[{id:'yt',l:'▶️ YouTube'},{id:'tt',l:'📱 TikTok'},{id:'ig',l:'📸 Instagram'}],
+    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@DrFox2.0" target="_blank" class="btn btn-primary">▶️ Open DrFox2.0 YouTube</a></div>
+        <div class="yt-grid">
+          <div class="yt-card"><iframe src="https://www.youtube.com/embed/videoseries?list=UU&listType=user_uploads" allowfullscreen loading="lazy"></iframe><div class="yt-cap">Latest DrFox2.0 videos</div></div>
+        </div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:1.2rem;text-align:center;">💡 Tip: grab any video ID from a URL like youtube.com/watch?v=<b>THIS_PART</b> and I can add it here!</p>`,
+    tt:`<div class="link-grid"><a href="https://www.tiktok.com/@drfox2.0" target="_blank" class="link-card"><span class="lc-icon">📱</span><span class="lc-name">TikTok</span><span class="lc-handle">@drfox2.0</span></a></div>`,
+    ig:`<div class="link-grid"><a href="https://www.instagram.com/drfox2.0" target="_blank" class="link-card"><span class="lc-icon">📸</span><span class="lc-name">Instagram</span><span class="lc-handle">@drfox2.0</span></a></div>`},
+  lunar:{emoji:'🌙',type:'Live Streaming · Entertainment',name:'LunarFoxVibes',desc:'Live streaming vibes with Lunar — gaming, chill sessions, variety content, and a community that feels like home. Catch the stream on Kick, Twitch, and YouTube.',
+    tabs:[{id:'kick',l:'🟢 Kick'},{id:'twitch',l:'🟣 Twitch'},{id:'yt',l:'▶️ YouTube'},{id:'discord',l:'💬 Discord'}],
+    kick:`<p style="color:var(--muted);margin-bottom:1.2rem;font-size:.88rem;">Watch Lunar live on Kick!</p>
+          <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;"><iframe src="https://player.kick.com/lunarfoxvibes" style="width:100%;aspect-ratio:16/9;border:none;" allowfullscreen loading="lazy"></iframe></div>
+          <div style="text-align:center;"><a href="https://kick.com/lunarfoxvibes" target="_blank" class="btn btn-primary">🟢 Follow on Kick</a></div>`,
+    twitch:`<p style="color:var(--muted);margin-bottom:1.2rem;font-size:.88rem;">Watch LunarFoxVibes live on Twitch!</p>
+            <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;"><iframe src="https://player.twitch.tv/?channel=lunarfoxvibes&parent=catandfoxstudios.com&muted=true" style="width:100%;aspect-ratio:16/9;border:none;" allowfullscreen loading="lazy"></iframe></div>
+            <div style="text-align:center;"><a href="https://www.twitch.tv/lunarfoxvibes" target="_blank" class="btn btn-primary">🟣 Follow on Twitch</a></div>`,
+    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@LunarFoxVibes" target="_blank" class="btn btn-primary">▶️ Open LunarFoxVibes YouTube</a></div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share some video IDs from your LunarFoxVibes channel and I'll embed them right here!</p>`,
+    discord:`<div class="link-grid"><a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="link-card"><span class="lc-icon">💬</span><span class="lc-name">Discord</span><span class="lc-handle">Join the Cat & Fox Community</span></a></div>`},
+  mora:{emoji:'🎭',type:'Comedy · Puppet · Short-Form',name:'Mora the Puppet',desc:'Mora explores the world one sketch at a time. Puppet comedy with real laughs and genuine heart — follow the adventures on TikTok and Instagram.',
+    tabs:[{id:'tt',l:'📱 TikTok'},{id:'ig',l:'📸 Instagram'}],
+    tt:`<div class="link-grid"><a href="https://www.tiktok.com/@moraexplores" target="_blank" class="link-card"><span class="lc-icon">📱</span><span class="lc-name">TikTok</span><span class="lc-handle">@moraexplores</span></a></div>`,
+    ig:`<div class="link-grid"><a href="https://www.instagram.com/moraexplores" target="_blank" class="link-card"><span class="lc-icon">📸</span><span class="lc-name">Instagram</span><span class="lc-handle">@moraexplores</span></a></div>`},
+  catfox:{emoji:'🦊🐱',type:'Main Studio Channel · Films · Entertainment',name:'Cat & Fox Studios',desc:'The main studio channel — indie films, entertainment specials, and the full Cat & Fox universe all in one place.',
+    tabs:[{id:'yt',l:'▶️ YouTube'},{id:'patreon',l:'🧡 Patreon'}],
+    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@CatandFoxStudios" target="_blank" class="btn btn-primary">▶️ Open Cat & Fox YouTube</a></div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share video IDs from your Cat & Fox Studios channel and I'll embed them right here!</p>`,
+    patreon:`<div style="background:linear-gradient(135deg,rgba(255,102,68,.12),rgba(255,107,26,.08));border:1px solid rgba(255,102,68,.28);border-radius:12px;padding:2.5rem;text-align:center;">
+      <div style="font-size:3.5rem;margin-bottom:1rem;">🧡</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;margin-bottom:.5rem;">Support Cat & Fox Studios</h3>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 1.5rem;line-height:1.7;font-size:.9rem;">One Patreon supports ALL our projects — DrFox, Lunar, Mora, the films, the games, everything. Every contribution goes directly into making more content.</p>
+      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a>
+    </div>`},
+  jenna:{emoji:'📦',type:"Personal Channel · Unboxings",name:'The Jenna Fox',desc:"Jenna's original YouTube channel — the OG Cat & Fox content, now home to unboxing videos and personal moments.",
+    tabs:[{id:'yt',l:'▶️ YouTube'}],
+    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@TheJennaFox" target="_blank" class="btn btn-primary">▶️ Open The Jenna Fox YouTube</a></div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share video IDs from The Jenna Fox channel and I'll embed them right here!</p>`},
+  more:{emoji:'✨',type:'Always In Development',name:'More Projects',desc:"We're always creating. New shows, new ideas, new experiments. Support us on Patreon to help fund what's coming next.",
+    tabs:[{id:'p',l:'🧡 Patreon'},{id:'d',l:'💬 Discord'}],
+    p:`<div style="background:linear-gradient(135deg,rgba(255,102,68,.1),rgba(255,107,26,.06));border:1px solid rgba(255,102,68,.22);border-radius:12px;padding:2.5rem;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:1rem;">🧡</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;margin-bottom:.5rem;">Help Us Build What's Next</h3>
+      <p style="color:var(--muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7;font-size:.9rem;">Everything we make is independent. Your Patreon support helps us invest in new shows, better equipment, and bigger ideas.</p>
+      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a>
+    </div>`,
+    d:`<div class="link-grid"><a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="link-card"><span class="lc-icon">💬</span><span class="lc-name">Discord</span><span class="lc-handle">Join the Community</span></a></div>`}
+};
+
+function openProject(id) {
+  const p = P[id]; if(!p) return;
+  const firstTab = p.tabs[0].id;
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-back" onclick="closeModal()">← All Projects</button>
+    <div class="modal-top">
+      <div>
+        <p class="modal-ptype">${p.type}</p>
+        <h2 class="modal-title">${p.name}</h2>
+        <p class="modal-desc">${p.desc}</p>
+      </div>
+      <div class="modal-big-emoji">${p.emoji}</div>
+    </div>
+    <div class="ptabs">${p.tabs.map((t,i)=>`<button class="ptab ${i===0?'active':''}" onclick="switchPane('${t.id}',this)">${t.l}</button>`).join('')}</div>
+    ${p.tabs.map((t,i)=>`<div class="pane ${i===0?'active':''}" id="pane-${t.id}">${p[t.id]||''}</div>`).join('')}
+  `;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function switchPane(id,btn) {
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById('pane-'+id);
+  if(el) el.classList.add('active');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+function handleSubscribe() {
+  const input=document.getElementById('emailInput');
+  if(!input.value.trim().includes('@')){ input.style.outline='2px solid red'; return; }
+  input.style.outline=''; input.value='';
+  const btn=document.querySelector('.nform button');
+  btn.textContent="✓ You're in!"; btn.style.background='var(--teal)';
+  setTimeout(()=>{ btn.textContent='Subscribe'; btn.style.background=''; },3000);
+}
+
+// CURSOR
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+document.querySelectorAll('a,button,.proj-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('big'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('big'));
+});
+function animCursor(){
+  cursor.style.transform=`translate(${mx-5}px,${my-5}px)`;
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.transform=`translate(${rx-17}px,${ry-17}px)`;
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+// PARTICLES
+const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
+function resizeC(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resizeC(); window.addEventListener('resize',resizeC);
+const pts=Array.from({length:55},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.4+.2,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.45+.08,c:Math.random()>.5?'255,107,26':'255,184,48'}));
+function drawP(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(${p.c},${p.o})`;ctx.fill();});
+  requestAnimationFrame(drawP);
+}
+drawP();
+
+// REVEAL
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal,.reveal2').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
