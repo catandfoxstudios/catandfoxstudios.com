@@ -27,21 +27,23 @@ body{background:var(--dark);color:var(--text);font-family:'Exo 2',sans-serif;ove
 .cursor-ring{width:34px;height:34px;border:1.5px solid var(--amber);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:width .2s,height .2s,border-color .2s;}
 .cursor-ring.big{width:58px;height:58px;border-color:var(--orange);}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.28;pointer-events:none;z-index:9990;}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(10,10,15,.96),rgba(10,10,15,.6));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,26,.06);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.06em;color:white;text-decoration:none;display:flex;align-items:center;gap:.35rem;}
-.nav-logo .fox{color:var(--orange);}
-.nav-logo .amp{color:var(--amber);}
+.nav-logo .fox{color:var(--orange);}.nav-logo .amp{color:var(--amber);}
 .nav-links{display:flex;gap:1.6rem;align-items:center;}
 .nav-links a{font-size:.77rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;position:relative;}
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--orange);transition:width .25s;}
-.nav-links a:hover{color:white;}
-.nav-links a:hover::after{width:100%;}
+.nav-links a:hover{color:white;}.nav-links a:hover::after{width:100%;}
 .live-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,40,40,.12);border:1px solid rgba(255,40,40,.32);border-radius:100px;padding:.28rem .75rem;font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#FF4455;text-decoration:none;transition:all .2s;}
 .live-pill:hover{background:rgba(255,40,40,.22);}
 .live-dot{width:6px;height:6px;background:#FF4455;border-radius:50%;animation:pulse 1.2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.5);}}
 .patreon-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,90,50,.12);border:1px solid rgba(255,90,50,.3);border-radius:100px;padding:.28rem .75rem;font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#FF7755;text-decoration:none;transition:all .2s;}
 .patreon-pill:hover{background:rgba(255,90,50,.22);}
+
+/* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 1.5rem 5rem;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(255,107,26,.1) 0%,transparent 70%),radial-gradient(ellipse 50% 35% at 15% 80%,rgba(0,212,170,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 85% 15%,rgba(155,107,255,.07) 0%,transparent 55%);}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,26,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,26,.03) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 15%,transparent 72%);}
@@ -49,9 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 2.5rem;displ
 .hero-content{text-align:center;position:relative;z-index:2;max-width:860px;}
 .hero-eyebrow{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--teal);text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp .8s ease both;}
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,14vw,11rem);line-height:.85;letter-spacing:.02em;margin-bottom:1.2rem;animation:fadeUp .8s .12s ease both;}
-.hero-title .l1{display:block;color:white;}
-.hero-title .l2{display:block;-webkit-text-stroke:1.5px var(--orange);color:transparent;}
-.hero-title .l3{display:block;color:var(--amber);}
+.hero-title .l1{display:block;color:white;}.hero-title .l2{display:block;-webkit-text-stroke:1.5px var(--orange);color:transparent;}.hero-title .l3{display:block;color:var(--amber);}
 .hero-sub{font-size:1rem;color:var(--muted);max-width:540px;margin:1.2rem auto 2rem;line-height:1.75;animation:fadeUp .8s .24s ease both;}
 .hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem;animation:fadeUp .8s .36s ease both;}
 .tag{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:.3rem .85rem;font-size:.75rem;font-weight:600;letter-spacing:.07em;}
@@ -66,16 +66,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 2.5rem;displ
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;animation:fadeIn 1s 1s ease both;}
 .scroll-bar{width:1px;height:36px;background:linear-gradient(to bottom,var(--orange),transparent);animation:scanDown 1.6s ease-in-out infinite;}
 @keyframes scanDown{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* TICKER */
 .ticker-wrap{background:var(--orange);padding:.52rem 0;overflow:hidden;white-space:nowrap;}
 .ticker-inner{display:inline-flex;gap:2.5rem;animation:tickScroll 32s linear infinite;}
 .tick-item{font-family:'Space Mono',monospace;font-size:.69rem;font-weight:700;letter-spacing:.18em;color:var(--dark);text-transform:uppercase;}
 @keyframes tickScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* SECTIONS */
 section{padding:5.5rem 1.5rem;}
 .container{max-width:1200px;margin:0 auto;}
 .s-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.35em;color:var(--teal);text-transform:uppercase;margin-bottom:.65rem;}
 .s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;margin-bottom:.8rem;}
 .s-title em{color:var(--orange);font-style:normal;}
 .s-desc{color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:2.8rem;font-size:.92rem;}
+
+/* PROJECTS */
 #projects{background:var(--dark2);}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.3rem;}
 .proj-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s cubic-bezier(.23,1,.32,1);position:relative;}
@@ -92,9 +98,15 @@ section{padding:5.5rem 1.5rem;}
 .chip{font-size:.66rem;font-weight:700;padding:.17rem .52rem;border-radius:3px;background:rgba(255,255,255,.05);color:var(--muted);letter-spacing:.05em;}
 .proj-arrow{position:absolute;bottom:1.3rem;right:1.4rem;width:33px;height:33px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:.9rem;transition:all .25s;}
 .proj-card:hover .proj-arrow{background:var(--orange);color:white;transform:rotate(45deg);}
+
+/* AUTO-UPDATE BADGE */
+.auto-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);border-radius:100px;padding:.2rem .6rem;font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--teal);margin-bottom:.8rem;}
+.auto-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:pulse 1.5s ease-in-out infinite;}
+
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(5,5,10,.97);z-index:5000;display:none;overflow-y:auto;backdrop-filter:blur(12px);}
 .modal-overlay.open{display:block;animation:fadeIn .25s ease;}
-.modal-inner{max-width:1080px;margin:0 auto;padding:1.5rem;}
+.modal-inner{max-width:1100px;margin:0 auto;padding:1.5rem;}
 .modal-back{display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;transition:color .2s;padding-top:5.5rem;margin-bottom:.5rem;}
 .modal-back:hover{color:var(--orange);}
 .modal-top{display:flex;align-items:flex-start;justify-content:space-between;padding:1.5rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2rem;gap:1.5rem;}
@@ -107,17 +119,31 @@ section{padding:5.5rem 1.5rem;}
 .ptab.active,.ptab:hover{background:var(--orange);border-color:var(--orange);color:white;}
 .pane{display:none;}
 .pane.active{display:block;animation:fadeUp .3s ease;}
+
+/* YOUTUBE PLAYLIST EMBED */
+.yt-playlist-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.5rem;background:var(--card);}
+.yt-playlist-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block;}
+.yt-auto-note{background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.2);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
+.yt-auto-note .note-icon{font-size:1.4rem;flex-shrink:0;}
+.yt-auto-note p{font-size:.82rem;color:var(--teal);line-height:1.5;}
+.yt-auto-note strong{color:white;}
+
+/* LINK CARDS */
 .link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem;margin-top:1rem;}
 .link-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1rem;text-align:center;text-decoration:none;display:block;transition:all .25s;}
 .link-card:hover{border-color:rgba(255,107,26,.55);transform:translateY(-4px);background:rgba(255,107,26,.06);}
 .lc-icon{font-size:1.9rem;display:block;margin-bottom:.45rem;}
 .lc-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:white;display:block;letter-spacing:.05em;}
 .lc-handle{font-size:.73rem;color:var(--muted);display:block;margin-top:.15rem;}
-.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:1rem;}
-.yt-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform .25s,border-color .25s;}
-.yt-card:hover{transform:translateY(-4px);border-color:rgba(255,107,26,.45);}
-.yt-card iframe{width:100%;aspect-ratio:16/9;border:none;display:block;}
-.yt-cap{padding:.7rem 1rem;font-size:.79rem;color:var(--muted);}
+
+/* GAMES */
+#games{background:var(--dark3);}
+.games-banner{background:linear-gradient(135deg,rgba(155,107,255,.1),rgba(255,107,26,.07));border:1px solid rgba(155,107,255,.22);border-radius:12px;padding:2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.games-icon{font-size:4rem;}
+.games-text h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:white;margin-bottom:.4rem;}
+.games-text p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;max-width:500px;line-height:1.7;}
+
+/* ABOUT */
 #about{background:var(--dark3);position:relative;overflow:hidden;}
 #about::before{content:'CAT & FOX';position:absolute;bottom:-2rem;right:-1rem;font-family:'Bebas Neue',sans-serif;font-size:clamp(7rem,18vw,16rem);color:rgba(255,107,26,.025);pointer-events:none;white-space:nowrap;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
@@ -127,18 +153,17 @@ section{padding:5.5rem 1.5rem;}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem;}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--orange);line-height:1;}
 .stat-lbl{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
-#games{background:var(--dark2);}
-.games-banner{background:linear-gradient(135deg,rgba(155,107,255,.1),rgba(255,107,26,.07));border:1px solid rgba(155,107,255,.22);border-radius:12px;padding:2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
-.games-icon{font-size:4rem;}
-.games-text h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:white;margin-bottom:.4rem;}
-.games-text p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;max-width:500px;line-height:1.7;}
-#connect{background:var(--dark);}
+
+/* CONNECT */
+#connect{background:var(--dark2);}
 .all-socials{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.9rem;margin-bottom:2.5rem;}
 .soc-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem .9rem;text-align:center;text-decoration:none;display:block;transition:all .25s;}
 .soc-card:hover{border-color:var(--orange);transform:translateY(-4px);}
 .soc-card .si{font-size:1.9rem;display:block;margin-bottom:.45rem;}
 .soc-card .sn{font-size:.77rem;font-weight:700;letter-spacing:.06em;color:var(--text);display:block;}
 .soc-card .sh{font-size:.69rem;color:var(--muted);display:block;margin-top:.1rem;}
+
+/* NEWSLETTER */
 .nbox{background:linear-gradient(135deg,rgba(255,107,26,.09),rgba(0,212,170,.04));border:1px solid rgba(255,107,26,.2);border-radius:12px;padding:2.8rem;text-align:center;}
 .nbox h3{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;margin-bottom:.4rem;}
 .nbox p{color:var(--muted);margin-bottom:1.4rem;font-size:.88rem;}
@@ -147,6 +172,8 @@ section{padding:5.5rem 1.5rem;}
 .nform input::placeholder{color:var(--muted);}
 .nform button{background:var(--orange);border:none;padding:.8rem 1.3rem;color:white;font-family:'Exo 2',sans-serif;font-size:.77rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
 .nform button:hover{background:#E04500;}
+
+/* FOOTER */
 footer{background:#060608;padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.04);}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.05em;margin-bottom:.4rem;}
 .foot-logo span{color:var(--orange);}
@@ -155,16 +182,25 @@ footer a{color:var(--orange);text-decoration:none;}
 .foot-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0;}
 .foot-links a{font-size:.74rem;color:var(--muted);text-decoration:none;transition:color .2s;}
 .foot-links a:hover{color:var(--orange);}
+
+/* PATREON BLOCK */
+.patreon-block{background:linear-gradient(135deg,rgba(255,102,68,.12),rgba(255,107,26,.08));border:1px solid rgba(255,102,68,.28);border-radius:12px;padding:2.5rem;text-align:center;}
+.patreon-block h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;margin-bottom:.5rem;}
+.patreon-block p{color:var(--muted);max-width:500px;margin:0 auto 1.5rem;line-height:1.7;font-size:.9rem;}
+
+/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 .reveal2{opacity:0;transform:translateY(28px);transition:opacity .7s .15s ease,transform .7s .15s ease;}
 .reveal2.in{opacity:1;transform:translateY(0);}
+
 @media(max-width:768px){nav{padding:.9rem 1rem;}.nav-links{display:none;}.about-grid{grid-template-columns:1fr;gap:2.5rem;}.modal-top{flex-direction:column;}.games-banner{flex-direction:column;text-align:center;}}
 </style>
 </head>
 <body>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -234,7 +270,7 @@ footer a{color:var(--orange);text-decoration:none;}
     <div class="reveal">
       <p class="s-label">// Our Shows & Projects //</p>
       <h2 class="s-title">Everything We <em>Create</em></h2>
-      <p class="s-desc">Click any project to explore episodes, streams, and links across every platform we publish on.</p>
+      <p class="s-desc">Click any project to watch episodes right here — videos update automatically every time we post something new. No manual updates ever needed!</p>
     </div>
     <div class="projects-grid reveal2">
 
@@ -243,9 +279,10 @@ footer a{color:var(--orange);text-decoration:none;}
           <div class="proj-emoji">🤖</div>
         </div>
         <div class="proj-body">
+          <div class="auto-badge"><span class="auto-dot"></span> AUTO-UPDATES</div>
           <p class="proj-type">AI · Robotics · 60-Second Tech</p>
           <h3 class="proj-name">DrFox 2.0</h3>
-          <p class="proj-desc">Your AI avatar host breaking down the latest in artificial intelligence and robotics — in 60 seconds flat. Fast, smart, and actually fun.</p>
+          <p class="proj-desc">Your AI avatar host breaking down the latest in artificial intelligence and robotics — in 60 seconds flat.</p>
           <div class="proj-chips"><span class="chip">YouTube</span><span class="chip">TikTok</span><span class="chip">Instagram</span><span class="chip">Sora</span></div>
         </div>
         <div class="proj-arrow">→</div>
@@ -256,9 +293,10 @@ footer a{color:var(--orange);text-decoration:none;}
           <div class="proj-emoji">🌙</div>
         </div>
         <div class="proj-body">
+          <div class="auto-badge"><span class="auto-dot"></span> AUTO-UPDATES</div>
           <p class="proj-type">Live Streaming · Entertainment</p>
           <h3 class="proj-name">LunarFoxVibes</h3>
-          <p class="proj-desc">Live streaming vibes with Lunar — gaming, chill sessions, variety content, and a community that feels like home. On Kick, Twitch, and YouTube.</p>
+          <p class="proj-desc">Live streaming vibes with Lunar — gaming, chill sessions, variety content, and a community that feels like home.</p>
           <div class="proj-chips"><span class="chip">Kick</span><span class="chip">Twitch</span><span class="chip">YouTube</span><span class="chip">Discord</span></div>
         </div>
         <div class="proj-arrow">→</div>
@@ -271,7 +309,7 @@ footer a{color:var(--orange);text-decoration:none;}
         <div class="proj-body">
           <p class="proj-type">Comedy · Puppet · Short-Form</p>
           <h3 class="proj-name">Mora the Puppet</h3>
-          <p class="proj-desc">Mora explores the world one sketch at a time. Puppet comedy with real heart and real laughs — short-form gold on TikTok and Instagram.</p>
+          <p class="proj-desc">Mora explores the world one sketch at a time. Puppet comedy with real heart and real laughs on TikTok and Instagram.</p>
           <div class="proj-chips"><span class="chip">TikTok</span><span class="chip">Instagram</span></div>
         </div>
         <div class="proj-arrow">→</div>
@@ -282,9 +320,10 @@ footer a{color:var(--orange);text-decoration:none;}
           <div class="proj-emoji">🦊🐱</div>
         </div>
         <div class="proj-body">
+          <div class="auto-badge"><span class="auto-dot"></span> AUTO-UPDATES</div>
           <p class="proj-type">Main Studio · Entertainment · Indie Film</p>
           <h3 class="proj-name">Cat & Fox Studios</h3>
-          <p class="proj-desc">The main studio channel — where all our worlds collide. Indie films, entertainment, behind-the-scenes, and the full Cat & Fox universe.</p>
+          <p class="proj-desc">The main studio channel — indie films, entertainment, behind-the-scenes, and the full Cat & Fox universe.</p>
           <div class="proj-chips"><span class="chip">YouTube</span><span class="chip">Patreon</span></div>
         </div>
         <div class="proj-arrow">→</div>
@@ -295,9 +334,10 @@ footer a{color:var(--orange);text-decoration:none;}
           <div class="proj-emoji">📦</div>
         </div>
         <div class="proj-body">
+          <div class="auto-badge"><span class="auto-dot"></span> AUTO-UPDATES</div>
           <p class="proj-type">Unboxings · Personal Channel</p>
           <h3 class="proj-name">The Jenna Fox</h3>
-          <p class="proj-desc">Jenna's original YouTube channel — now home to unboxing videos and personal content. The OG Cat & Fox experience, still going strong.</p>
+          <p class="proj-desc">Jenna's original YouTube channel — unboxing videos and personal content. The OG Cat & Fox experience, still going strong.</p>
           <div class="proj-chips"><span class="chip">YouTube</span></div>
         </div>
         <div class="proj-arrow">→</div>
@@ -330,7 +370,7 @@ footer a{color:var(--orange);text-decoration:none;}
       <div class="games-icon">🎮</div>
       <div class="games-text">
         <h3>Cat & Fox on itch.io</h3>
-        <p>We make indie games too! From small experiments to bigger projects — all made with the same Cat & Fox creativity and heart. Free to play and explore.</p>
+        <p>We make indie games too! From small experiments to bigger projects — all made with the same Cat & Fox creativity and heart.</p>
         <a href="https://catandfox.itch.io/" target="_blank" class="btn btn-primary">Play Our Games →</a>
       </div>
     </div>
@@ -344,8 +384,8 @@ footer a{color:var(--orange);text-decoration:none;}
         <p class="s-label">// Who We Are //</p>
         <h2 class="s-title">Stories Worth <em>Telling</em></h2>
         <p>Cat & Fox Studios is an <strong>independent entertainment studio</strong> built on passion, creativity, and a genuine love of technology and storytelling.</p>
-        <p>From 60-second AI breakdowns with DrFox2.0 to puppet comedy with Mora, live streaming with Lunar, unboxings with Jenna, indie films, and indie games — <strong>we do it all, and we do it with heart.</strong></p>
-        <p>Every show, every stream, every frame is made by real people who care deeply about what they put into the world. <strong>Your Patreon support</strong> covers all our projects and keeps the lights on.</p>
+        <p>From 60-second AI breakdowns with DrFox2.0 to puppet comedy with Mora, live streaming with Lunar, unboxings with Jenna, indie films, and games — <strong>we do it all, and we do it with heart.</strong></p>
+        <p>Every show, every stream, every frame is made by real people who care deeply. <strong>Your Patreon support</strong> covers all our projects and keeps the cameras rolling.</p>
         <div class="hero-cta" style="justify-content:flex-start;margin-top:1.5rem;">
           <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Support on Patreon</a>
           <a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="btn btn-outline">💬 Join Discord</a>
@@ -368,7 +408,7 @@ footer a{color:var(--orange);text-decoration:none;}
     <div class="reveal">
       <p class="s-label">// Find Us Everywhere //</p>
       <h2 class="s-title">We're <em>Live</em> Across</h2>
-      <p class="s-desc">Follow, subscribe, and support us wherever you hang out online. One Patreon covers all our projects.</p>
+      <p class="s-desc">Follow, subscribe, and support us wherever you hang out online. One Patreon supports all our projects.</p>
     </div>
     <div class="all-socials reveal2">
       <a href="https://www.youtube.com/@CatandFoxStudios" target="_blank" class="soc-card"><span class="si">▶️</span><span class="sn">YouTube</span><span class="sh">Cat & Fox Studios</span></a>
@@ -414,59 +454,106 @@ footer a{color:var(--orange);text-decoration:none;}
 </div>
 
 <script>
+// =====================================================
+// CHANNEL IDs — YouTube auto-uploads playlist trick:
+// Replace "UC" at start of Channel ID with "UU"
+// to get the channel's auto-updating uploads playlist!
+// =====================================================
+// CatandFoxStudios  channel: UCSs8OV6iURbRfGBezNusaZg  → playlist: UUSs8OV6iURbRfGBezNusaZg
+// LunarFoxVibes     channel: UCrK8j1s4l8iD4ClSo6DVsQw  → playlist: UUrK8j1s4l8iD4ClSo6DVsQw
+// DrFox2.0          channel: UCfolPuj4AzF8s2teOZCxG8w  → playlist: UUfolPuj4AzF8s2teOZCxG8w
+// TheJennaFox       channel: UCi5uYmLYJwHtnGBQd_teavA  → playlist: UUi5uYmLYJwHtnGBQd_teavA
+
+const PLAYLISTS = {
+  catfox:  'UUSs8OV6iURbRfGBezNusaZg',
+  lunar:   'UUrK8j1s4l8iD4ClSo6DVsQw',
+  drfox:   'UUfolPuj4AzF8s2teOZCxG8w',
+  jenna:   'UUi5uYmLYJwHtnGBQd_teavA',
+};
+
+function ytPlaylist(playlistId, channelUrl, channelLabel) {
+  return `
+    <div class="yt-auto-note">
+      <span class="note-icon">✨</span>
+      <p><strong>This playlist auto-updates!</strong> Every time a new video is uploaded to ${channelLabel}, it appears here automatically — no manual updates ever needed.</p>
+    </div>
+    <div class="yt-playlist-wrap">
+      <iframe src="https://www.youtube.com/embed/videoseries?list=${playlistId}&rel=0" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <a href="${channelUrl}" target="_blank" class="btn btn-primary">▶️ Open Full Channel on YouTube</a>
+    </div>
+  `;
+}
+
+function linkPane(items) {
+  return `<div class="link-grid">${items.map(i=>`<a href="${i.url}" target="_blank" class="link-card"><span class="lc-icon">${i.icon}</span><span class="lc-name">${i.name}</span><span class="lc-handle">${i.handle}</span></a>`).join('')}</div>`;
+}
+
 const P = {
-  drfox:{emoji:'🤖',type:'AI · Robotics · 60-Second Tech Show',name:'DrFox 2.0',desc:'Your AI avatar host breaks down the latest in artificial intelligence and robotics in 60 seconds flat. Fast, smart, actually fun.',
+  drfox:{
+    emoji:'🤖', type:'AI · Robotics · 60-Second Tech Show', name:'DrFox 2.0',
+    desc:'Your AI avatar host breaks down the latest in artificial intelligence and robotics in 60 seconds flat. New episode every week — auto-loaded right here!',
     tabs:[{id:'yt',l:'▶️ YouTube'},{id:'tt',l:'📱 TikTok'},{id:'ig',l:'📸 Instagram'}],
-    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@DrFox2.0" target="_blank" class="btn btn-primary">▶️ Open DrFox2.0 YouTube</a></div>
-        <div class="yt-grid">
-          <div class="yt-card"><iframe src="https://www.youtube.com/embed/videoseries?list=UU&listType=user_uploads" allowfullscreen loading="lazy"></iframe><div class="yt-cap">Latest DrFox2.0 videos</div></div>
-        </div>
-        <p style="color:var(--muted);font-size:.78rem;margin-top:1.2rem;text-align:center;">💡 Tip: grab any video ID from a URL like youtube.com/watch?v=<b>THIS_PART</b> and I can add it here!</p>`,
-    tt:`<div class="link-grid"><a href="https://www.tiktok.com/@drfox2.0" target="_blank" class="link-card"><span class="lc-icon">📱</span><span class="lc-name">TikTok</span><span class="lc-handle">@drfox2.0</span></a></div>`,
-    ig:`<div class="link-grid"><a href="https://www.instagram.com/drfox2.0" target="_blank" class="link-card"><span class="lc-icon">📸</span><span class="lc-name">Instagram</span><span class="lc-handle">@drfox2.0</span></a></div>`},
-  lunar:{emoji:'🌙',type:'Live Streaming · Entertainment',name:'LunarFoxVibes',desc:'Live streaming vibes with Lunar — gaming, chill sessions, variety content, and a community that feels like home. Catch the stream on Kick, Twitch, and YouTube.',
+    yt: ytPlaylist(PLAYLISTS.drfox, 'https://www.youtube.com/@DrFox2.0', 'DrFox 2.0'),
+    tt: linkPane([{icon:'📱',name:'TikTok',handle:'@drfox2.0',url:'https://www.tiktok.com/@drfox2.0'}]),
+    ig: linkPane([{icon:'📸',name:'Instagram',handle:'@drfox2.0',url:'https://www.instagram.com/drfox2.0'}]),
+  },
+  lunar:{
+    emoji:'🌙', type:'Live Streaming · Entertainment', name:'LunarFoxVibes',
+    desc:'Live streaming vibes with Lunar — gaming, chill sessions, variety content. Stream embeds live on Kick & Twitch. YouTube highlights auto-update!',
     tabs:[{id:'kick',l:'🟢 Kick'},{id:'twitch',l:'🟣 Twitch'},{id:'yt',l:'▶️ YouTube'},{id:'discord',l:'💬 Discord'}],
-    kick:`<p style="color:var(--muted);margin-bottom:1.2rem;font-size:.88rem;">Watch Lunar live on Kick!</p>
-          <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;"><iframe src="https://player.kick.com/lunarfoxvibes" style="width:100%;aspect-ratio:16/9;border:none;" allowfullscreen loading="lazy"></iframe></div>
-          <div style="text-align:center;"><a href="https://kick.com/lunarfoxvibes" target="_blank" class="btn btn-primary">🟢 Follow on Kick</a></div>`,
-    twitch:`<p style="color:var(--muted);margin-bottom:1.2rem;font-size:.88rem;">Watch LunarFoxVibes live on Twitch!</p>
-            <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;"><iframe src="https://player.twitch.tv/?channel=lunarfoxvibes&parent=catandfoxstudios.com&muted=true" style="width:100%;aspect-ratio:16/9;border:none;" allowfullscreen loading="lazy"></iframe></div>
-            <div style="text-align:center;"><a href="https://www.twitch.tv/lunarfoxvibes" target="_blank" class="btn btn-primary">🟣 Follow on Twitch</a></div>`,
-    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@LunarFoxVibes" target="_blank" class="btn btn-primary">▶️ Open LunarFoxVibes YouTube</a></div>
-        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share some video IDs from your LunarFoxVibes channel and I'll embed them right here!</p>`,
-    discord:`<div class="link-grid"><a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="link-card"><span class="lc-icon">💬</span><span class="lc-name">Discord</span><span class="lc-handle">Join the Cat & Fox Community</span></a></div>`},
-  mora:{emoji:'🎭',type:'Comedy · Puppet · Short-Form',name:'Mora the Puppet',desc:'Mora explores the world one sketch at a time. Puppet comedy with real laughs and genuine heart — follow the adventures on TikTok and Instagram.',
+    kick:`
+      <div class="yt-auto-note"><span class="note-icon">🔴</span><p><strong>Live Stream Embed!</strong> When LunarFoxVibes goes live on Kick, the stream will appear right here in real time.</p></div>
+      <div class="yt-playlist-wrap"><iframe src="https://player.kick.com/lunarfoxvibes" allowfullscreen loading="lazy"></iframe></div>
+      <div style="text-align:center;margin-top:1rem;"><a href="https://kick.com/lunarfoxvibes" target="_blank" class="btn btn-primary">🟢 Follow on Kick</a></div>
+    `,
+    twitch:`
+      <div class="yt-auto-note"><span class="note-icon">🟣</span><p><strong>Live Stream Embed!</strong> When LunarFoxVibes goes live on Twitch, the stream will appear right here in real time.</p></div>
+      <div class="yt-playlist-wrap"><iframe src="https://player.twitch.tv/?channel=lunarfoxvibes&parent=catandfoxstudios.com&muted=true" allowfullscreen loading="lazy"></iframe></div>
+      <div style="text-align:center;margin-top:1rem;"><a href="https://www.twitch.tv/lunarfoxvibes" target="_blank" class="btn btn-primary">🟣 Follow on Twitch</a></div>
+    `,
+    yt: ytPlaylist(PLAYLISTS.lunar, 'https://www.youtube.com/@LunarFoxVibes', 'LunarFoxVibes'),
+    discord: linkPane([{icon:'💬',name:'Discord',handle:'Join the Cat & Fox Community',url:'https://discord.com/invite/ZuH9nqWGBh'}]),
+  },
+  mora:{
+    emoji:'🎭', type:'Comedy · Puppet · Short-Form', name:'Mora the Puppet',
+    desc:'Mora explores the world one sketch at a time. Follow the adventures on TikTok and Instagram — new sketches posted regularly!',
     tabs:[{id:'tt',l:'📱 TikTok'},{id:'ig',l:'📸 Instagram'}],
-    tt:`<div class="link-grid"><a href="https://www.tiktok.com/@moraexplores" target="_blank" class="link-card"><span class="lc-icon">📱</span><span class="lc-name">TikTok</span><span class="lc-handle">@moraexplores</span></a></div>`,
-    ig:`<div class="link-grid"><a href="https://www.instagram.com/moraexplores" target="_blank" class="link-card"><span class="lc-icon">📸</span><span class="lc-name">Instagram</span><span class="lc-handle">@moraexplores</span></a></div>`},
-  catfox:{emoji:'🦊🐱',type:'Main Studio Channel · Films · Entertainment',name:'Cat & Fox Studios',desc:'The main studio channel — indie films, entertainment specials, and the full Cat & Fox universe all in one place.',
+    tt: linkPane([{icon:'📱',name:'TikTok',handle:'@moraexplores',url:'https://www.tiktok.com/@moraexplores'}]),
+    ig: linkPane([{icon:'📸',name:'Instagram',handle:'@moraexplores',url:'https://www.instagram.com/moraexplores'}]),
+  },
+  catfox:{
+    emoji:'🦊🐱', type:'Main Studio Channel · Films · Entertainment', name:'Cat & Fox Studios',
+    desc:'The main studio channel — indie films, entertainment specials, and the full Cat & Fox universe. New videos appear here automatically!',
     tabs:[{id:'yt',l:'▶️ YouTube'},{id:'patreon',l:'🧡 Patreon'}],
-    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@CatandFoxStudios" target="_blank" class="btn btn-primary">▶️ Open Cat & Fox YouTube</a></div>
-        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share video IDs from your Cat & Fox Studios channel and I'll embed them right here!</p>`,
-    patreon:`<div style="background:linear-gradient(135deg,rgba(255,102,68,.12),rgba(255,107,26,.08));border:1px solid rgba(255,102,68,.28);border-radius:12px;padding:2.5rem;text-align:center;">
-      <div style="font-size:3.5rem;margin-bottom:1rem;">🧡</div>
-      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;margin-bottom:.5rem;">Support Cat & Fox Studios</h3>
-      <p style="color:var(--muted);max-width:500px;margin:0 auto 1.5rem;line-height:1.7;font-size:.9rem;">One Patreon supports ALL our projects — DrFox, Lunar, Mora, the films, the games, everything. Every contribution goes directly into making more content.</p>
-      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a>
-    </div>`},
-  jenna:{emoji:'📦',type:"Personal Channel · Unboxings",name:'The Jenna Fox',desc:"Jenna's original YouTube channel — the OG Cat & Fox content, now home to unboxing videos and personal moments.",
+    yt: ytPlaylist(PLAYLISTS.catfox, 'https://www.youtube.com/@CatandFoxStudios', 'Cat & Fox Studios'),
+    patreon:`
+      <div class="patreon-block">
+        <div style="font-size:3.5rem;margin-bottom:1rem;">🧡</div>
+        <h3>Support Cat & Fox Studios</h3>
+        <p>One Patreon supports ALL our projects — DrFox, Lunar, Mora, the films, the games, everything. Every contribution goes directly into making more content.</p>
+        <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a>
+      </div>
+    `,
+  },
+  jenna:{
+    emoji:'📦', type:'Personal Channel · Unboxings', name:'The Jenna Fox',
+    desc:"Jenna's original YouTube channel with 570+ videos and 141K views — unboxing videos and personal content. New videos appear here automatically!",
     tabs:[{id:'yt',l:'▶️ YouTube'}],
-    yt:`<div style="text-align:center;margin-bottom:1.5rem;"><a href="https://www.youtube.com/@TheJennaFox" target="_blank" class="btn btn-primary">▶️ Open The Jenna Fox YouTube</a></div>
-        <p style="color:var(--muted);font-size:.78rem;margin-top:.5rem;text-align:center;">💡 Share video IDs from The Jenna Fox channel and I'll embed them right here!</p>`},
-  more:{emoji:'✨',type:'Always In Development',name:'More Projects',desc:"We're always creating. New shows, new ideas, new experiments. Support us on Patreon to help fund what's coming next.",
+    yt: ytPlaylist(PLAYLISTS.jenna, 'https://www.youtube.com/@TheJennaFox', 'The Jenna Fox'),
+  },
+  more:{
+    emoji:'✨', type:'Always In Development', name:'More Projects',
+    desc:"We're always creating. New shows, new ideas, new experiments. Support us on Patreon to help fund what's coming next.",
     tabs:[{id:'p',l:'🧡 Patreon'},{id:'d',l:'💬 Discord'}],
-    p:`<div style="background:linear-gradient(135deg,rgba(255,102,68,.1),rgba(255,107,26,.06));border:1px solid rgba(255,102,68,.22);border-radius:12px;padding:2.5rem;text-align:center;">
-      <div style="font-size:3rem;margin-bottom:1rem;">🧡</div>
-      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;margin-bottom:.5rem;">Help Us Build What's Next</h3>
-      <p style="color:var(--muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.7;font-size:.9rem;">Everything we make is independent. Your Patreon support helps us invest in new shows, better equipment, and bigger ideas.</p>
-      <a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a>
-    </div>`,
-    d:`<div class="link-grid"><a href="https://discord.com/invite/ZuH9nqWGBh" target="_blank" class="link-card"><span class="lc-icon">💬</span><span class="lc-name">Discord</span><span class="lc-handle">Join the Community</span></a></div>`}
+    p:`<div class="patreon-block"><div style="font-size:3rem;margin-bottom:1rem;">🧡</div><h3>Help Us Build What's Next</h3><p>Everything we make is independent. Your Patreon support helps us invest in new shows, better equipment, and bigger ideas.</p><a href="https://www.patreon.com/c/CatAndFoxStudios" target="_blank" class="btn btn-patreon">🧡 Join Our Patreon</a></div>`,
+    d: linkPane([{icon:'💬',name:'Discord',handle:'Join the Community',url:'https://discord.com/invite/ZuH9nqWGBh'}]),
+  }
 };
 
 function openProject(id) {
   const p = P[id]; if(!p) return;
-  const firstTab = p.tabs[0].id;
   document.getElementById('modal-content').innerHTML = `
     <button class="modal-back" onclick="closeModal()">← All Projects</button>
     <div class="modal-top">
@@ -483,6 +570,7 @@ function openProject(id) {
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function switchPane(id,btn) {
   document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
@@ -531,7 +619,7 @@ function drawP(){
 }
 drawP();
 
-// REVEAL
+// SCROLL REVEAL
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal,.reveal2').forEach(el=>obs.observe(el));
 </script>
